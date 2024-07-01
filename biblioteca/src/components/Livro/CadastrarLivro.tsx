@@ -8,21 +8,8 @@ function CadastrarLivro() {
   const [categoria, setCategoria] = useState("");
 
   useEffect(() => {
-    carregarCategorias();
   }, []);
 
-  function carregarCategorias() {
-    fetch("http://localhost:5225/api/categoria/listar")
-      .then((resposta) => resposta.json())
-      .then((data) => {
-        console.table(data);
-        setCategoria(data[0].nome);
-      })
-      .catch((erro) => {
-        console.error("Erro ao carregar categorias:", erro);
- 
-      });
-  }
 
   function cadastrarLivro(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -54,6 +41,7 @@ function CadastrarLivro() {
 
   return (
     <div>
+      <center>
       <h1>Cadastrar Livro</h1>
       <form onSubmit={cadastrarLivro}>
         <label>Título:</label>
@@ -94,6 +82,7 @@ function CadastrarLivro() {
         <br />
         <button type="submit">Cadastrar</button>
       </form>
+      </center>
     </div>
   );
 }

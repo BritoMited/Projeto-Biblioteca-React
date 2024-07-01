@@ -1,5 +1,5 @@
 export interface Emprestimo {
-    emprestimoId?: string;
+    id?: string;
     usuarioId:string;
     livroId:string;
   }

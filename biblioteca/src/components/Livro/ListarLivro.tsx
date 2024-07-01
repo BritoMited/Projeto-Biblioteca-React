@@ -37,6 +37,7 @@ function ListarLivro() {
 
   return (
     <div>
+      <center>
       <h1>Listagem de Livros</h1>
       <table border={1}>
         <thead>
@@ -61,14 +62,22 @@ function ListarLivro() {
                 <button onClick={() => deletarLivro(livro.id)}>
                   Deletar
                 </button>
+                <button className="atualizar">
                 <Link to={`/pages/livro/atualizar/${livro.id}`}>
                   Alterar
-                </Link>
+                </Link>    
+                </button>
+                <button className="emprestimo">
+                <Link to={`/pages/emprestimo/cadastrar/${livro.id}`}>
+                  Emprestimo
+                </Link>    
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </center>
     </div>
   );
 }

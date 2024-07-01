@@ -56,6 +56,7 @@ function AtualizarLivro() {
 
   return (
     <div>
+      <center>
       <h1>Alterar Livro</h1>
       <form onSubmit={alterarLivro}>
         <label>Título:</label>
@@ -65,7 +66,7 @@ function AtualizarLivro() {
           onChange={(e) => setTitulo(e.target.value)}
           placeholder="Digite o título"
           required
-        />
+          />
         <br />
         <label>Autor:</label>
         <input
@@ -74,7 +75,7 @@ function AtualizarLivro() {
           onChange={(e) => setAutor(e.target.value)}
           placeholder="Digite o autor"
           required
-        />
+          />
         <br />
         <label>Editora:</label>
         <input
@@ -92,10 +93,11 @@ function AtualizarLivro() {
           onChange={(e) => setCategoria(e.target.value)}
           placeholder="Digite a categoria"
           required
-        />
+          />
         <br />
         <button type="submit">Alterar</button>
       </form>
+</center>
     </div>
   );
 }

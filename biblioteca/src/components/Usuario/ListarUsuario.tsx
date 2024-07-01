@@ -33,6 +33,7 @@ function ListarUsuario() {
 
   return (
     <div>
+      <center>
       <h1>Listagem de Usuários</h1>
       <table border={1}>
         <thead>
@@ -61,14 +62,17 @@ function ListarUsuario() {
                 >
                   Deletar
                 </button>
-                <Link to={`/pages/usuario/alterar/${usuario.id}`}>
-                  Alterar
-                </Link>
+                <button className="alterar-button">
+                  <Link to={`/pages/usuario/alterar/${usuario.id}`}>
+                    Alterar
+                  </Link>
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </center>
     </div>
   );
 }

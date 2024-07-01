@@ -1,88 +1,69 @@
+import React from "react";
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import styled from 'styled-components';
 import ListarLivro from "./components/Livro/ListarLivro";
 import ListarUsuario from "./components/Usuario/ListarUsuario";
 import CadastrarUsuario from "./components/Usuario/CadastrarUsuario";
-import CadastrarLivro from "./components/Livro/CadastrarLivro";
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import AtualizarUsuario from "./components/Usuario/AtualizarUsuario";
 import AtualizarLivro from "./components/Livro/AtualizarLivro";
+import CadastrarEmprestimo from "./components/Emprestimo/CadastrarEmprestimo";
+import ListarEmprestimo from "./components/Emprestimo/ListarEmprestimo";
+import CadastrarLivro from "./components/Livro/CadastrarLivro";
+
 
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <nav>
+      <BrowserRouter> 
+      <nav>
           <ul>
             <li>
               <Link to={"/"}>Home</Link>
             </li>
             <li>
               <Link to={"/pages/usuario/cadastrar"}>
-                Cadastrar Usuario{" "}
+                Cadastrar Usuário
               </Link>
             </li>
             <li>
               <Link to={"/pages/usuario/listar"}>
-                Listar Usuario{" "}
+                Listar Usuário
               </Link>
             </li>
             <li>
               <Link to={"/pages/livro/listar"}>
-              Listar Livro{" "}
+                Listar Livro
+              </Link>
+            </li>
+            <li>
+              <Link to={"/pages/livro/cadastrar"}>
+                Cadastrar Livro
+              </Link>
+            </li>
+            <li>
+              <Link to={"/pages/emprestimo/listar"}>
+                Emprestimo Listar
               </Link>
             </li>
           </ul>
-        </nav>
+      </nav>
         <Routes>
           <Route path="/" element={<ListarLivro />} />
-          <Route
-            path="/pages/usuario/cadastrar"
-            element={<CadastrarUsuario />}
-          />
-          <Route
-            path="/pages/usuario/alterar/:id"
-            element={<AtualizarUsuario />}
-          />
-          <Route
-            path="/pages/usuario/listar"
-            element={<ListarUsuario />}
-          />
+          <Route path="/pages/usuario/cadastrar" element={<CadastrarUsuario />} />
+          <Route path="/pages/usuario/alterar/:id" element={<AtualizarUsuario />} />
+          <Route path="/pages/usuario/listar" element={<ListarUsuario />} />
 
+          <Route path="/pages/livro/listar" element={<ListarLivro />} />
+          <Route path="/pages/livro/atualizar/:id" element={<AtualizarLivro />} />
+          <Route path="/pages/livro/cadastrar" element={<CadastrarLivro />} />
 
-          <Route
-            path="/pages/livro/listar"
-            element={<ListarLivro />}
-          />
-          <Route
-            path="/pages/livro/atualizar/:id"
-            element={<AtualizarLivro />}
-          />
-
+          <Route path="/pages/emprestimo/cadastrar/:id" element={<CadastrarEmprestimo />} />
+          <Route path="/pages/emprestimo/listar" element={<ListarEmprestimo />} />
         </Routes>
-        <footer>
-          <p>o clã miteds esteve aqui</p>
-        </footer>
       </BrowserRouter>
     </div>
   );
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-
-//       <h1>USUARIOS</h1>
-//       <ListarUsuario/>
-//       <CadastrarUsuario/>
-
-
-//       <h1>LIVROS</h1>
-//       <ListarLivro/>
-//       <CadastrarLivro/>
-//       {/* <AtualizarLivro/> */}
-      
-//     </div>
-//   );
-// }
 
 export default App;

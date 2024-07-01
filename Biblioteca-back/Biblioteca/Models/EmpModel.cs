@@ -6,11 +6,13 @@ public class EmpModel{
     public EmpModel(){
         
     }
-    public EmpModel(int id){
-        Id = id;
+    public EmpModel(int idLivro, int idUsuario){
+
+        IdUsuario = idUsuario;
     }
 
-    public int? Id { get; set; }
+  
+     public int? IdUsuario { get; set; }
 
 
 }

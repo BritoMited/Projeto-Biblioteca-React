@@ -274,10 +274,13 @@ app.MapDelete("/Biblioteca/usuarios/deletar/{id}", ([FromRoute] int Id, [FromSer
 // Emprestar Livro
 // URL: http://localhost:5290/Biblioteca/emprestimo/{id}
 
+// Emprestar Livro
+// URL: http://localhost:5290/Biblioteca/emprestimo/{id}
+
 app.MapPost("/Biblioteca/emprestimo/{id}", ([FromRoute] int Id, [FromBody] EmpModel empModel, [FromServices] DbCtx ctx) =>
 {
     // Busca o usuário pelo ID fornecido na rota
-    Usuario? usuario = ctx.Usuarios.FirstOrDefault(x => x.Id == Id);
+    Usuario? usuario = ctx.Usuarios.FirstOrDefault(x => x.Id == empModel.IdUsuario);
     if (usuario is null)
     {
         // Retorna uma resposta HTTP 404 (Not Found) se o usuário não for encontrado
@@ -285,7 +288,7 @@ app.MapPost("/Biblioteca/emprestimo/{id}", ([FromRoute] int Id, [FromBody] EmpMo
     }
 
     // Busca o livro pelo ID fornecido no corpo da requisição
-    Livro? livro = ctx.Livros.FirstOrDefault(x => x.Id == empModel.Id);
+    Livro? livro = ctx.Livros.FirstOrDefault(x => x.Id == Id);
     if (livro is null)
     {
         // Retorna uma resposta HTTP 404 (Not Found) se o livro não for encontrado
@@ -293,7 +296,7 @@ app.MapPost("/Biblioteca/emprestimo/{id}", ([FromRoute] int Id, [FromBody] EmpMo
     }
     
     // Verifica a disponibilidade do livro no acervo
-    if (ctx.Emprestimos.Any(e => e.LivroId == empModel.Id))
+    if (ctx.Emprestimos.Any(e => e.LivroId == Id))
     {
         // Retorna uma resposta HTTP 400 (Bad Request) se o livro já foi emprestado
         return Results.BadRequest("Livro já foi emprestado");
@@ -311,6 +314,7 @@ app.MapPost("/Biblioteca/emprestimo/{id}", ([FromRoute] int Id, [FromBody] EmpMo
     // Retorna uma resposta HTTP 200 (OK) com o empréstimo realizado
     return Results.Ok(emprestimo);
 });
+
 
 
 // Listar Empréstimos
@@ -350,7 +354,7 @@ app.MapGet("/Biblioteca/emprestimo/listar", ([FromServices] DbCtx ctx) =>
 app.MapPost("/Biblioteca/devolucao/{id}", ([FromRoute] int Id, [FromBody] EmpModel empModel, [FromServices] DbCtx ctx) =>
 {
     // Busca o usuário pelo ID fornecido na rota
-    Usuario? usuario = ctx.Usuarios.FirstOrDefault(x => x.Id == Id);
+    Usuario? usuario = ctx.Usuarios.FirstOrDefault(x => x.Id == empModel.IdUsuario);
     if (usuario is null)
     {
         // Retorna uma resposta HTTP 404 (Not Found) se o usuário não for encontrado
@@ -358,7 +362,7 @@ app.MapPost("/Biblioteca/devolucao/{id}", ([FromRoute] int Id, [FromBody] EmpMod
     }
 
     // Busca o livro pelo ID fornecido no corpo da requisição
-    Livro? livro = ctx.Livros.FirstOrDefault(x => x.Id == empModel.Id);
+    Livro? livro = ctx.Livros.FirstOrDefault(x => x.Id == Id);
     if (livro is null)
     {
         // Retorna uma resposta HTTP 404 (Not Found) se o livro não for encontrado
@@ -381,7 +385,6 @@ app.MapPost("/Biblioteca/devolucao/{id}", ([FromRoute] int Id, [FromBody] EmpMod
     // Retorna uma resposta HTTP 200 (OK) com uma mensagem de sucesso
     return Results.Ok("Empréstimo removido com sucesso");
 });
-
 
 app.UseCors("Acesso Total");
 app.Run();

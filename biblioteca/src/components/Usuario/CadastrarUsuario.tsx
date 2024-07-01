@@ -36,6 +36,7 @@ function CadastrarUsuario() {
 
     return (
         <div>
+            <center>
             <h1>Cadastrar Usuário</h1>
             <form onSubmit={cadastrarUsuario}>
                 <label>Nome:</label>
@@ -72,6 +73,7 @@ function CadastrarUsuario() {
                 <br />
                 <button type="submit">Cadastrar</button>
             </form>
+            </center>
         </div>
     );
 }
